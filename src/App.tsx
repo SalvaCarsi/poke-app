@@ -1,14 +1,12 @@
-import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
-    <>
-      <h1>Pokemon Library</h1>
-      <div className="card"></div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<div>Hola</div>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

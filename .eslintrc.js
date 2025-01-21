@@ -18,14 +18,12 @@ export default {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  plugins: ['react', 'react-refresh', '@typescript-eslint'],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        semi: false, // Disable semicolons
-        singleQuote: true, // Use single quotes
-      },
-    ],
+    'react-refresh/only-export-components': 'warn',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
   },
-  ignorePatterns: ['node_module', 'dist', 'public', 'build'],
 }

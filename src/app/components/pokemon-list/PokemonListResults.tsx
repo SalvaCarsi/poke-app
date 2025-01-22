@@ -1,5 +1,7 @@
 import { Pokemon } from '@/app/infra/client'
 
+import './PokemonListResults.css'
+
 interface PokemonListResultsProps {
   searchResults: Pokemon[]
 }
@@ -19,8 +21,8 @@ const PokemonListResults = ({ searchResults }: PokemonListResultsProps) => {
         {searchResults.map((pokemon: Pokemon) => {
           return (
             <tr key={pokemon.name}>
-              <td className="table-cell__pokemon-name">{pokemon.name}</td>
-              <td className="table-cell__pokemon-url">{pokemon.url}</td>
+              <td className="pokemon-list-results__name">{pokemon.name}</td>
+              <td className="pokemon-list-results__url">{pokemon.url}</td>
             </tr>
           )
         })}

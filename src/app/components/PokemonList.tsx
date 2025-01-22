@@ -14,15 +14,26 @@ const PokemonList = () => {
   }, [])
 
   return (
-    <div>
-      {pokemons.map((pokemon: Pokemon) => {
-        return (
-          <div>
-            <span>{pokemon.name}</span>
-            <span>{pokemon.url}</span>
-          </div>
-        )
-      })}
+    <div className="pokemon-list__wrapper">
+      <h3>Lista de Pokemons</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Url</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pokemons.map((pokemon: Pokemon) => {
+            return (
+              <tr>
+                <td>{pokemon.name}</td>
+                <td>{pokemon.url}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   )
 }

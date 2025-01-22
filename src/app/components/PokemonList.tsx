@@ -6,8 +6,13 @@ const PokemonList = () => {
   useEffect(() => {
     const getAllPokemons = async () => {
       const response = await fetchAllPokemons()
+      const sortedPokemons = response.sort(
+        (pokemonA: Pokemon, pokemonB: Pokemon) => {
+          return pokemonA.name.localeCompare(pokemonB.name, 'en')
+        },
+      )
 
-      setPokemons(response)
+      setPokemons(sortedPokemons)
     }
 
     getAllPokemons()

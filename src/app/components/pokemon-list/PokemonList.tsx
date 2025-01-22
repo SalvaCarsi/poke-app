@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchAllPokemons, Pokemon } from '@/app/infra/client'
 import { debounce } from '@/utils'
+import { PokemonListResults } from '@/app/components/pokemon-list/PokemonListResults'
 
 import './PokemonList.css'
 
@@ -43,24 +44,7 @@ const PokemonList = () => {
             <input id="search-input" onChange={debounce(performSearch, 400)} />
           </div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Url</th>
-            </tr>
-          </thead>
-          <tbody>
-            {searchResults.map((pokemon: Pokemon) => {
-              return (
-                <tr key={pokemon.name}>
-                  <td className="table-cell__pokemon-name">{pokemon.name}</td>
-                  <td className="table-cell__pokemon-url">{pokemon.url}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        <PokemonListResults searchResults={searchResults} />
       </div>
     </div>
   )

@@ -10,7 +10,7 @@
 }
 
 .table-cell__pokemon-name {
-  width: 130px;
+  width: 200px;
 }
 
 .table-cell__pokemon-url {
@@ -22,7 +22,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 490px;
+  width: 560px;
 }
 
 .pokemon-list__search label {

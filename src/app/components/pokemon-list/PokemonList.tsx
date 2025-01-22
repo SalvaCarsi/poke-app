@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Pokemon } from '@/app/infra/client'
 import { debounce } from '@/utils'
-import { PokemonListResults } from '@/app/components/pokemon-list/PokemonListResults'
+import { PokemonListResults } from '@/app/components/pokemon-list-results'
 import { usePokemons } from './usePokemons'
 
 import './PokemonList.css'

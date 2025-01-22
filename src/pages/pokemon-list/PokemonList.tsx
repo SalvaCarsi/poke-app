@@ -1,5 +1,7 @@
+import { PokemonList as PokemonListComponent } from '@/app/pokemons/components/PokemonList'
+
 const PokemonList = () => {
-  return <div>Here goes the list</div>
+  return <PokemonListComponent />
 }
 
 export { PokemonList }

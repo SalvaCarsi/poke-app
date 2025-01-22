@@ -5,6 +5,8 @@ import './PokemonList.css'
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState([])
+  const [searchResults, setSearchResults] = useState([])
+
   useEffect(() => {
     const getAllPokemons = async () => {
       const response = await fetchAllPokemons()
@@ -15,6 +17,7 @@ const PokemonList = () => {
       )
 
       setPokemons(sortedPokemons)
+      setSearchResults(sortedPokemons)
     }
 
     getAllPokemons()
@@ -26,8 +29,18 @@ const PokemonList = () => {
         <div className="pokemon-list__header">
           <h3>Lista de Pokemons</h3>
           <div className="pokemon-list__search">
-            <label>buscador</label>
-            <input />
+            <label htmlFor="search-input">buscar:</label>
+            <input
+              id="search-input"
+              onChange={(event) => {
+                const searchText = event.target.value
+                const result = pokemons.filter((pokemon: Pokemon) => {
+                  return pokemon.name.includes(searchText)
+                })
+
+                setSearchResults(result)
+              }}
+            />
           </div>
         </div>
         <table>
@@ -38,7 +51,7 @@ const PokemonList = () => {
             </tr>
           </thead>
           <tbody>
-            {pokemons.map((pokemon: Pokemon) => {
+            {searchResults.map((pokemon: Pokemon) => {
               return (
                 <tr>
                   <td>{pokemon.name}</td>

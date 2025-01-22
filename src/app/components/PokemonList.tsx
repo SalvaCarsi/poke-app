@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchAllPokemons, Pokemon } from '@/app/infra/client'
+import { debounce } from '@/utils'
 
 import './PokemonList.css'
 
@@ -23,6 +24,15 @@ const PokemonList = () => {
     getAllPokemons()
   }, [])
 
+  const performSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchText = event.target.value
+    const result = pokemons.filter((pokemon: Pokemon) => {
+      return pokemon.name.includes(searchText)
+    })
+
+    setSearchResults(result)
+  }
+
   return (
     <div className="pokemon-list__wrapper">
       <div>
@@ -30,17 +40,7 @@ const PokemonList = () => {
           <h3>Lista de Pokemons</h3>
           <div className="pokemon-list__search">
             <label htmlFor="search-input">buscar:</label>
-            <input
-              id="search-input"
-              onChange={(event) => {
-                const searchText = event.target.value
-                const result = pokemons.filter((pokemon: Pokemon) => {
-                  return pokemon.name.includes(searchText)
-                })
-
-                setSearchResults(result)
-              }}
-            />
+            <input id="search-input" onChange={debounce(performSearch, 400)} />
           </div>
         </div>
         <table>
@@ -53,9 +53,9 @@ const PokemonList = () => {
           <tbody>
             {searchResults.map((pokemon: Pokemon) => {
               return (
-                <tr>
-                  <td>{pokemon.name}</td>
-                  <td>{pokemon.url}</td>
+                <tr key={pokemon.name}>
+                  <td className="table-cell__pokemon-name">{pokemon.name}</td>
+                  <td className="table-cell__pokemon-url">{pokemon.url}</td>
                 </tr>
               )
             })}

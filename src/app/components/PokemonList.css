@@ -9,6 +9,14 @@
   text-align: left;
 }
 
+.table-cell__pokemon-name {
+  width: 130px;
+}
+
+.table-cell__pokemon-url {
+  width: 350px;
+}
+
 .pokemon-list__header {
   display: flex;
   flex-direction: row;

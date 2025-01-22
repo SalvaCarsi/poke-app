@@ -1,29 +1,14 @@
-import { useEffect, useState } from 'react'
-import { fetchAllPokemons, Pokemon } from '@/app/infra/client'
+import { useState } from 'react'
+import { Pokemon } from '@/app/infra/client'
 import { debounce } from '@/utils'
 import { PokemonListResults } from '@/app/components/pokemon-list/PokemonListResults'
+import { usePokemons } from './usePokemons'
 
 import './PokemonList.css'
 
 const PokemonList = () => {
-  const [pokemons, setPokemons] = useState([])
-  const [searchResults, setSearchResults] = useState([])
-
-  useEffect(() => {
-    const getAllPokemons = async () => {
-      const response = await fetchAllPokemons()
-      const sortedPokemons = response.sort(
-        (pokemonA: Pokemon, pokemonB: Pokemon) => {
-          return pokemonA.name.localeCompare(pokemonB.name, 'en')
-        },
-      )
-
-      setPokemons(sortedPokemons)
-      setSearchResults(sortedPokemons)
-    }
-
-    getAllPokemons()
-  }, [])
+  const [searchResults, setSearchResults] = useState<Pokemon[]>([])
+  const { pokemons } = usePokemons(setSearchResults)
 
   const performSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchText = event.target.value

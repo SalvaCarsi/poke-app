@@ -36,16 +36,14 @@ const PokemonList = () => {
 
   return (
     <div className="pokemon-list__wrapper">
-      <div>
-        <div className="pokemon-list__header">
-          <h3>Lista de Pokemons</h3>
-          <div className="pokemon-list__search">
-            <label htmlFor="search-input">buscar:</label>
-            <input id="search-input" onChange={debounce(performSearch, 400)} />
-          </div>
+      <div className="pokemon-list__header">
+        <h3>Lista de Pokemons</h3>
+        <div className="pokemon-list__search">
+          <label htmlFor="search-input">buscar:</label>
+          <input id="search-input" onChange={debounce(performSearch, 400)} />
         </div>
-        <PokemonListResults searchResults={searchResults} />
       </div>
+      <PokemonListResults searchResults={searchResults} />
     </div>
   )
 }

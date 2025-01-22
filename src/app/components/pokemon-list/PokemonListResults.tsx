@@ -5,7 +5,7 @@ interface PokemonListResultsProps {
 }
 
 const PokemonListResults = ({ searchResults }: PokemonListResultsProps) => {
-  if (searchResults.length === 0) return null
+  if (searchResults.length === 0) return <div>no results found</div>
 
   return (
     <table>

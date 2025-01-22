@@ -1,4 +1,4 @@
-import { PokemonList as PokemonListComponent } from '@/app/pokemons/components/PokemonList'
+import { PokemonList as PokemonListComponent } from '@/app/components/PokemonList'
 
 const PokemonList = () => {
   return <PokemonListComponent />

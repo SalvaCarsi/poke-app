@@ -22,6 +22,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 490px;
 }
 
 .pokemon-list__search label {

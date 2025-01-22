@@ -4,3 +4,7 @@
   width: 100%;
   align-items: center;
 }
+
+.pokemon-list__wrapper th {
+  text-align: left;
+}

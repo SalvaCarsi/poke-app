@@ -23,7 +23,13 @@ const PokemonList = () => {
   return (
     <div className="pokemon-list__wrapper">
       <div>
-        <h3>Lista de Pokemons</h3>
+        <div className="pokemon-list__header">
+          <h3>Lista de Pokemons</h3>
+          <div className="pokemon-list__search">
+            <label>buscador</label>
+            <input />
+          </div>
+        </div>
         <table>
           <thead>
             <tr>

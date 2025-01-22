@@ -8,3 +8,14 @@
 .pokemon-list__wrapper th {
   text-align: left;
 }
+
+.pokemon-list__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pokemon-list__search label {
+  margin-right: 8px;
+}

@@ -8,7 +8,6 @@ export interface PokemonDetail {
   sprites: string
   abilities: string[]
   moves: string[]
-  forms: string
 }
 
 interface AbilityRecord {
@@ -36,7 +35,9 @@ export const fetchAllPokemons: () => Promise<Pokemon[]> = async () => {
   return data.results
 }
 
-export const fetchPokemon = async (id: string) => {
+export const fetchPokemon: (id: string) => Promise<PokemonDetail> = async (
+  id: string,
+) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}/`
 
   const response = await fetch(url)

@@ -22,13 +22,16 @@ const PokemonListResults = ({ searchResults }: PokemonListResultsProps) => {
       <tbody>
         {searchResults.map((pokemon: Pokemon) => {
           const pokemonId = getIdFromUrl(pokemon.url)
+          const detailUrl = `/detail/${pokemonId}`
+
           return (
             <tr key={pokemon.name}>
-              <Link to={`/detail/${pokemonId}`}>
-                <td className="pokemon-list-results__name">{pokemon.name}</td>
-
-                <td className="pokemon-list-results__url">{pokemon.url}</td>
-              </Link>
+              <td className="pokemon-list-results__name">
+                <Link to={detailUrl}>{pokemon.name}</Link>
+              </td>
+              <td className="pokemon-list-results__url">
+                <Link to={detailUrl}>{pokemon.url}</Link>
+              </td>
             </tr>
           )
         })}

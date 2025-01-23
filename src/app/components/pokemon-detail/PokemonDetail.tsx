@@ -8,12 +8,14 @@ import './PokemonDetail.css'
 const PokemonDetail = () => {
   const { id } = useParams()
   const [pokemon, setPokemon] = useState<PokemonDetailInterface>()
+  const [pokemonMoves, setPokemonMoves] = useState<string[]>([])
 
   useEffect(() => {
     const getPokemon = async () => {
       const response = await fetchPokemon(id)
 
       setPokemon(response)
+      setPokemonMoves(response.moves)
     }
 
     getPokemon()
@@ -30,12 +32,25 @@ const PokemonDetail = () => {
         <img src={pokemon.sprites} />
         <h4>Abilities: {pokemon.abilities.join(', ')}</h4>
         <h4>
-          Form id: {pokemon.formId} | Is battle only: {pokemon.isBattleOnly.toString()}
+          Form id: {pokemon.formId} | Is battle only:{' '}
+          {pokemon.isBattleOnly.toString()}
         </h4>
       </div>
       <div>
         <h4>Moves</h4>
-        {pokemon.moves.join(', ')}
+        <button
+          onClick={() => {
+            setPokemonMoves((pokemonMoves) => {
+              const clonedPokemonMoves = structuredClone(pokemonMoves)
+              clonedPokemonMoves.shift()
+              return clonedPokemonMoves
+            })
+          }}
+        >
+          Delete a move
+        </button>
+        <div>{pokemonMoves}</div>
+        <br />
       </div>
     </div>
   )

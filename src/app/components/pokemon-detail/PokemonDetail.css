@@ -7,3 +7,9 @@
 .pokemon-detail__name {
   width: 300px;
 }
+
+.pokemon-detail__delete-move-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

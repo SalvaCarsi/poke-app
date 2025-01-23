@@ -21,6 +21,14 @@ const PokemonDetail = () => {
     getPokemon()
   }, [id])
 
+  const removePokemonMoves = () => {
+    setPokemonMoves((pokemonMoves) => {
+      const clonedPokemonMoves = structuredClone(pokemonMoves)
+      clonedPokemonMoves.shift()
+      return clonedPokemonMoves
+    })
+  }
+
   if (!pokemon) return
 
   return (
@@ -37,18 +45,10 @@ const PokemonDetail = () => {
         </h4>
       </div>
       <div>
-        <h4>Moves</h4>
-        <button
-          onClick={() => {
-            setPokemonMoves((pokemonMoves) => {
-              const clonedPokemonMoves = structuredClone(pokemonMoves)
-              clonedPokemonMoves.shift()
-              return clonedPokemonMoves
-            })
-          }}
-        >
-          Delete a move
-        </button>
+        <div className="pokemon-detail__delete-move-button">
+          <h4>Moves</h4>
+          <button onClick={removePokemonMoves}>Delete a move</button>
+        </div>
         <div>{pokemonMoves}</div>
         <br />
       </div>

@@ -8,6 +8,8 @@ export interface PokemonDetailInterface {
   sprites: string
   abilities: string[]
   moves: string[]
+  formId: number
+  isBattleOnly: boolean
 }
 
 interface AbilityRecord {
@@ -43,6 +45,10 @@ export const fetchPokemon: (
   const response = await fetch(url)
   const detail = await response.json()
 
+  const formsUrl = detail.forms[0].url
+  const formsResponse = await fetch(formsUrl)
+  const formsDetail = await formsResponse.json()
+
   return {
     name: detail.name,
     sprites: detail.sprites.back_default,
@@ -52,5 +58,7 @@ export const fetchPokemon: (
     moves: detail.moves.map((record: MoveRecord) => {
       return record.move.name
     }),
+    formId: formsDetail.id,
+    isBattleOnly: formsDetail.is_battle_only
   }
 }

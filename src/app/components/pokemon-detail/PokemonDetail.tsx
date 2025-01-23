@@ -27,13 +27,11 @@ const PokemonDetail = () => {
         <h2 className="pokemon-detail__name">
           Name: {pokemon.name.toUpperCase()}
         </h2>
-        <br />
         <img src={pokemon.sprites} />
-        <br />
-        <div>
-          <h4>Abilities</h4>
-          {pokemon.abilities.join(', ')}
-        </div>
+        <h4>Abilities: {pokemon.abilities.join(', ')}</h4>
+        <h4>
+          Form id: {pokemon.formId} | Is battle only: {pokemon.isBattleOnly.toString()}
+        </h4>
       </div>
       <div>
         <h4>Moves</h4>

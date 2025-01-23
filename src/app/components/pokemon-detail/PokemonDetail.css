@@ -1,0 +1,9 @@
+.pokemon-detail__wrapper {
+  padding: 60px;
+  display: flex;
+  gap: 50px;
+}
+
+.pokemon-detail__name {
+  width: 300px;
+}

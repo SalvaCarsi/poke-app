@@ -3,7 +3,7 @@ export interface Pokemon {
   url: string
 }
 
-export interface PokemonDetail {
+export interface PokemonDetailInterface {
   name: string
   sprites: string
   abilities: string[]
@@ -35,9 +35,9 @@ export const fetchAllPokemons: () => Promise<Pokemon[]> = async () => {
   return data.results
 }
 
-export const fetchPokemon: (id: string) => Promise<PokemonDetail> = async (
+export const fetchPokemon: (
   id: string,
-) => {
+) => Promise<PokemonDetailInterface> = async (id: string) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}/`
 
   const response = await fetch(url)

@@ -14,8 +14,15 @@ const PokemonDetail = () => {
     const getPokemon = async () => {
       const response = await fetchPokemon(id)
 
+      const moves = response.moves
+      const sortedMoves = moves.sort((moveA: Move, moveB: Move) => {
+        const moveASplitUrl = moveA.url.split('/')
+        const moveBSplitUrl = moveB.url.split('/')
+        return moveASplitUrl[6] > moveBSplitUrl[6]
+      })
+
       setPokemon(response)
-      setPokemonMoves(response.moves.map((move: Move) => move.name))
+      setPokemonMoves(sortedMoves.map((move: Move) => move.name))
     }
 
     getPokemon()
@@ -49,7 +56,7 @@ const PokemonDetail = () => {
           <h4>Moves</h4>
           <button onClick={removePokemonMoves}>Delete a move</button>
         </div>
-        <div>{pokemonMoves}</div>
+        <div>{pokemonMoves.join(', ')}</div>
         <br />
       </div>
     </div>

@@ -1,32 +1,11 @@
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { fetchPokemon } from '@/app/infra/client'
-import { PokemonDetailInterface, Move } from '@/app/infra/client'
+import { useState } from 'react'
+import { usePokemon } from './usePokemon'
 
 import './PokemonDetail.css'
 
 const PokemonDetail = () => {
-  const { id } = useParams()
-  const [pokemon, setPokemon] = useState<PokemonDetailInterface>()
   const [pokemonMoves, setPokemonMoves] = useState<string[]>([])
-
-  useEffect(() => {
-    const getPokemon = async () => {
-      const response = await fetchPokemon(id)
-
-      const moves = response.moves
-      const sortedMoves = moves.sort((moveA: Move, moveB: Move) => {
-        const moveASplitUrl = moveA.url.split('/')
-        const moveBSplitUrl = moveB.url.split('/')
-        return moveASplitUrl[6] > moveBSplitUrl[6]
-      })
-
-      setPokemon(response)
-      setPokemonMoves(sortedMoves.map((move: Move) => move.name))
-    }
-
-    getPokemon()
-  }, [id])
+  const { pokemon } = usePokemon(setPokemonMoves)
 
   const removePokemonMoves = () => {
     setPokemonMoves((pokemonMoves) => {

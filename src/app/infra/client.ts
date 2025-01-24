@@ -7,7 +7,7 @@ export interface PokemonDetailInterface {
   name: string
   sprites: string
   abilities: string[]
-  moves: string[]
+  moves: Move[]
   formId: number
   isBattleOnly: boolean
 }
@@ -24,8 +24,9 @@ interface MoveRecord {
   move: Move
 }
 
-interface Move {
+export interface Move {
   name: string
+  url: string
 }
 
 export const fetchAllPokemons: () => Promise<Pokemon[]> = async () => {
@@ -56,7 +57,7 @@ export const fetchPokemon: (
       return record.ability.name
     }),
     moves: detail.moves.map((record: MoveRecord) => {
-      return record.move.name
+      return {name: record.move.name, url: record.move.url}
     }),
     formId: formsDetail.id,
     isBattleOnly: formsDetail.is_battle_only

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchPokemon } from '@/app/infra/client'
-import { PokemonDetailInterface } from '@/app/infra/client'
+import { PokemonDetailInterface, Move } from '@/app/infra/client'
 
 import './PokemonDetail.css'
 
@@ -15,7 +15,7 @@ const PokemonDetail = () => {
       const response = await fetchPokemon(id)
 
       setPokemon(response)
-      setPokemonMoves(response.moves)
+      setPokemonMoves(response.moves.map((move: Move) => move.name))
     }
 
     getPokemon()
